@@ -19,7 +19,6 @@ import et.ticketingsystem.ts.model.Station;
 import et.ticketingsystem.ts.service.StationService;
 
 @RestController
-@RequestMapping(path = "/station/")
 public class StationController {
 
 	@Autowired

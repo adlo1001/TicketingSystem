@@ -18,7 +18,7 @@ import et.ticketingsystem.ts.service.PassengerService;
 import et.ticketingsystem.ts.service.TransportationService;
 
 @RestController
-@RequestMapping(path = { "/Trans" })
+@RequestMapping(path = { "/trans" })
 public class TransportationController {
 	@Autowired
 	TransportationService transService;

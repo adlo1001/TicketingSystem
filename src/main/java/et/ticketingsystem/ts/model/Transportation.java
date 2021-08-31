@@ -42,8 +42,8 @@ public class Transportation {
 	@Column(name = "plateNumber")
 	private String plateNumber;
 
-	@Column(name = "owner") // name of the company
-	private String owner;
+	@Column(name = "ownerName") // name of the company
+	private String ownerName;
 
 	@Column(name = "numberOfSeat")
 	private String numberOfSeat;
@@ -71,7 +71,7 @@ public class Transportation {
 
 		this.vehicle = vehicle;
 		this.plateNumber = plateNumber;
-		this.owner = owner;
+		this.ownerName = owner;
 		this.numberOfSeat = numberOfSeat;
 		this.transporationClass = transporationClass;
 		this._mode = _mode;
@@ -105,11 +105,11 @@ public class Transportation {
 	}
 
 	public String getOwner() {
-		return owner;
+		return ownerName;
 	}
 
 	public void setOwner(String owner) {
-		this.owner = owner;
+		this.ownerName = owner;
 	}
 
 	public String getNumberOfSeat() {
@@ -122,7 +122,7 @@ public class Transportation {
 
 	@Override
 	public String toString() {
-		return "Transportation [id=" + id + ", vehicle=" + vehicle + ", plateNumber=" + plateNumber + ", owner=" + owner
+		return "Transportation [id=" + id + ", vehicle=" + vehicle + ", plateNumber=" + plateNumber + ", owner=" + ownerName
 				+ ", numberOfSeat=" + numberOfSeat + "]";
 	}
 

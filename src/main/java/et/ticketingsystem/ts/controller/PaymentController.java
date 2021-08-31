@@ -20,23 +20,23 @@ public class PaymentController {
 	@Autowired
 	PaymentService paymentService;
 
-	@GetMapping("/Payment")
+	@GetMapping("/payments")
 	Iterable<Payment> read() {
 		return paymentService.findAll();
 	}
 
-	@PostMapping("/Payment")
+	@PostMapping("/payments")
 	Payment create(@RequestBody Payment payment) {
 		return paymentService.save(payment);
 	}
 
-	@PutMapping("/Payment")
+	@PutMapping("/payments")
 	Payment update(@RequestBody Payment payment) {
 		return paymentService.save(payment);
 
 	}
 
-	@DeleteMapping("/Payement/{id}")
+	@DeleteMapping("/payements/{id}")
 	void delete(@PathVariable int id) {
 		paymentService.deleteById(id);
 	}

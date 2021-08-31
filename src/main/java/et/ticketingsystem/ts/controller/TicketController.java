@@ -18,7 +18,6 @@ import et.ticketingsystem.ts.service.TicketingService;
 import et.ticketingsystem.ts.util.ErrorMessage;
 
 @RestController
-@RequestMapping(path = { "/ticket" })
 public class TicketController {
 
 	@Autowired

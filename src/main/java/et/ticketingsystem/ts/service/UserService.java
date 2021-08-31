@@ -9,7 +9,7 @@ import et.ticketingsystem.ts.model.Passenger;
 import et.ticketingsystem.ts.model.User;
 
 @Repository
-public interface UserService extends CrudRepository<User, Integer> {
+public interface UserService  extends CrudRepository<User, Integer>  {
 
 	Iterable<User> findByFirstNameAndLastName(String first_name, String last_name);
 

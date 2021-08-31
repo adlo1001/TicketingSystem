@@ -12,29 +12,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import et.ticketingsystem.ts.model.TripHistory;
 import et.ticketingsystem.ts.service.TripHistoryService;
 
-@RequestMapping(path = { "/History" })
+@RequestMapping(path = { "/trip" })
 public class TripHistoryController {
 
 	@Autowired
 	TripHistoryService tripHistoryService;
 
-	@GetMapping("/trpHist")
+	@GetMapping("/history")
 	Iterable<TripHistory> read() {
 		return tripHistoryService.findAll();
 	}
 
-	@PostMapping("/trpHist")
+	@PostMapping("/history")
 	TripHistory create(@RequestBody TripHistory trpHist) {
 		return tripHistoryService.save(trpHist);
 	}
 
-	@PutMapping("/trpHist")
+	@PutMapping("/history")
 	TripHistory update(@RequestBody TripHistory trpHist) {
 		return tripHistoryService.save(trpHist);
 
 	}
 
-	@DeleteMapping("/trpHist/{id}")
+	@DeleteMapping("/history/{id}")
 	void delete(@PathVariable int id) {
 		tripHistoryService.deleteById(id);
 	}

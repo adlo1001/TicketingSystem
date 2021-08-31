@@ -28,16 +28,16 @@ public class RouteController {
 		return routeService.findAll();
 	}
 
-	@PostMapping("/route")
+	@PostMapping("/routes")
 	Route create(@RequestBody Route route) {
 		return routeService.save(route);
 	}
 
-	@PutMapping("/route")
+	@PutMapping("/routes")
 	Route update(@RequestBody Route route) {
 		return routeService.save(route);
 	}
-	@DeleteMapping("/route/{id}")
+	@DeleteMapping("/routes/{id}")
 	void delete(@PathVariable int id) {
 		routeService.deleteById(id);
 	}
