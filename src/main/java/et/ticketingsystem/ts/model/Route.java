@@ -16,31 +16,24 @@ public class Route {
 	private String description;
 
 	@OneToOne
-	@Embedded
 	private Station initialStation;
 
 	@OneToOne
-	@Embedded
 	private Station subStation1;
 
 	@OneToOne
-	@Embedded
 	private Station subStation2;
 
 	@OneToOne
-	@Embedded
 	private Station subStation3;
 
 	@OneToOne
-	@Embedded
 	private Station subStation4;
 
 	@OneToOne
-	@Embedded
 	private Station subStation5;
 
 	@OneToOne
-	@Embedded
 	private Station finalStation;
 
 	public Route() {

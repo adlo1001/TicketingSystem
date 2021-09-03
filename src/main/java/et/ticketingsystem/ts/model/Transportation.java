@@ -1,5 +1,6 @@
 package et.ticketingsystem.ts.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -8,6 +9,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -42,8 +45,8 @@ public class Transportation {
 	@Column(name = "plateNumber")
 	private String plateNumber;
 
-	@Column(name = "ownerName") // name of the company
-	private String ownerName;
+	@OneToOne
+	private Company owner;
 
 	@Column(name = "numberOfSeat")
 	private String numberOfSeat;
@@ -64,14 +67,14 @@ public class Transportation {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Transportation(String vehicle, String plateNumber, String owner, String numberOfSeat, int transporationClass,
+	public Transportation(String vehicle, String plateNumber, Company owner, String numberOfSeat, int transporationClass,
 			TRAMODE _mode, Payment paymentMode, boolean isPetAllowed, boolean isSmokingAllowed,
 			boolean isDrinkingAllowed) {
 		super();
 
 		this.vehicle = vehicle;
 		this.plateNumber = plateNumber;
-		this.ownerName = owner;
+		this.owner = owner;
 		this.numberOfSeat = numberOfSeat;
 		this.transporationClass = transporationClass;
 		this._mode = _mode;
@@ -104,12 +107,12 @@ public class Transportation {
 		this.plateNumber = plateNumber;
 	}
 
-	public String getOwner() {
-		return ownerName;
+	public Company getOwner() {
+		return owner;
 	}
 
-	public void setOwner(String owner) {
-		this.ownerName = owner;
+	public void setOwner(Company owner) {
+		this.owner = owner;
 	}
 
 	public String getNumberOfSeat() {
@@ -122,7 +125,7 @@ public class Transportation {
 
 	@Override
 	public String toString() {
-		return "Transportation [id=" + id + ", vehicle=" + vehicle + ", plateNumber=" + plateNumber + ", owner=" + ownerName
+		return "Transportation [id=" + id + ", vehicle=" + vehicle + ", plateNumber=" + plateNumber + ", owner=" + owner
 				+ ", numberOfSeat=" + numberOfSeat + "]";
 	}
 
