@@ -1,5 +1,6 @@
 package et.ticketingsystem.ts.model;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -36,10 +37,6 @@ public class Address {
 
 	@NotBlank
 	private String country;
-
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	private User user;
 
 
 	public Address() {
