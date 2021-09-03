@@ -41,5 +41,10 @@ public class RouteController {
 	void delete(@PathVariable int id) {
 		routeService.deleteById(id);
 	}
+	
+	@DeleteMapping("/routes")
+	void delete() {
+		routeService.deleteAll();
+	}
 
 }

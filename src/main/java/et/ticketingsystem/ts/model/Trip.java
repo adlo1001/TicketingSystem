@@ -12,24 +12,19 @@ public class Trip {
 	@GeneratedValue
 	private int id;
 
-	@OneToOne
-	@Embedded
+	@OneToOne(cascade=CascadeType.ALL)
 	private Station initialStation;
 
-	@OneToOne
-	@Embedded
+	@OneToOne(cascade=CascadeType.ALL)
 	private Station finalStation;
 
-	@OneToOne
-	@Embedded
+	@OneToOne(cascade=CascadeType.ALL)
 	private Transportation trans;
 
-	@OneToOne
-	@Embedded
+	@OneToOne(cascade=CascadeType.ALL)
 	private Route route;
 
 	@OneToMany(cascade = CascadeType.ALL)
-	@Embedded
 	private List<TripPackage> tripPackage;
 
 	private Date initialTime;

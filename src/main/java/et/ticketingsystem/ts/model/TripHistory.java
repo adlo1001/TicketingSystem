@@ -2,6 +2,7 @@ package et.ticketingsystem.ts.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -20,8 +21,7 @@ public class TripHistory {
 	private int id;
 
 	
-	@OneToOne
-	@Embedded
+	@OneToOne(cascade=CascadeType.ALL)
 	private Trip trip;
 
 	public long getId() {
