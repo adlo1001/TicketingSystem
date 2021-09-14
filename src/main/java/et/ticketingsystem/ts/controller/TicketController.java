@@ -24,7 +24,7 @@ public class TicketController {
 	TicketingService ticketService;
 
 	@GetMapping("/tickets")
-	Iterable<Ticket> read() {
+	public Iterable<Ticket> read() {
 		if (ticketService.count()!=0)
 		return ticketService.findAll();
 		else 
@@ -33,7 +33,7 @@ public class TicketController {
 
 	
 	@GetMapping("/tickets/{id}")
-	Optional<Ticket> read(@PathVariable int id) {
+	public Optional<Ticket> read(@PathVariable int id) {
 		if (ticketService.existsById(id))
 		return ticketService.findById(id);
 		else 
@@ -42,19 +42,18 @@ public class TicketController {
 
 	
 	@PostMapping("/tickets")
-	Ticket create(@RequestBody Ticket ticket) {
-		return ticketService.save(ticket);
+	public void  create(@RequestBody Ticket ticket) {
+		ticketService.save(ticket);
 	}
 
 	@PutMapping("/tickets")
-	Ticket update(@RequestBody Ticket ticket) {
-		
-		return ticketService.save(ticket);
+	public void  update(@RequestBody Ticket ticket) {
+		 ticketService.save(ticket);
 
 	}
 
 	@DeleteMapping("/ticket/{id}")
-	void delete(@PathVariable int id) {
+	public void delete(@PathVariable int id) {
 		ticketService.deleteById(id);
 	}
 

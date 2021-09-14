@@ -21,11 +21,9 @@ public class Ticket {
 	}
 
 	@NotBlank
-	@Column(name = "ticketNumber")
 	private String ticketNumber;
 
 	@NotBlank
-	@Column(name = "refNumber")
 	private String refNumber;
 
 	@NotNull
@@ -58,18 +56,22 @@ public class Ticket {
 
 	@NotNull
 	private double otherAmnt;
+	
+	@OneToOne
+	private Trip trip;
 
 	public Ticket() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
+
+
 	public Ticket(@NotBlank String ticketNumber, @NotBlank String refNumber, @NotNull @Min(1) int numberOfAdults,
 			int numberOfKids, int numberOfInfants, @NotNull int numberOfDisabled,
-			@NotNull(message = "Please enter issue Date!") Date issue_date,
+			@NotNull(message = "Please enter issue Date!") Date issueDate,
 			@NotNull(message = "Please enter expiry Date!") Date expiry_date, TICKET_STATUS status,
-			@NotNull Date issueDate, @NotNull double grossPriceAmnt, @NotNull double taxesAmnt,
-			@NotNull double otherAmnt) {
+			@NotNull double grossPriceAmnt, @NotNull double taxesAmnt, @NotNull double otherAmnt, Trip trip) {
 		super();
 		this.ticketNumber = ticketNumber;
 		this.refNumber = refNumber;
@@ -77,133 +79,173 @@ public class Ticket {
 		this.numberOfKids = numberOfKids;
 		this.numberOfInfants = numberOfInfants;
 		this.numberOfDisabled = numberOfDisabled;
+		this.issueDate = issueDate;
 		this.expiry_date = expiry_date;
 		this.status = status;
-		this.issueDate = issueDate;
 		this.grossPriceAmnt = grossPriceAmnt;
 		this.taxesAmnt = taxesAmnt;
 		this.otherAmnt = otherAmnt;
+		this.trip = trip;
 	}
 
-	public long getId() {
+
+
+
+	public int getId() {
 		return id;
 	}
+
+
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
-	public String getticketNumber() {
-		return ticketNumber;
-	}
 
-	public void setticketNumber(String ticketNumber) {
-		this.ticketNumber = ticketNumber;
-	}
-
-	public Date getExpiry_date() {
-		return expiry_date;
-	}
-
-	public void setExpiry_date(Date expiry_date) {
-		this.expiry_date = expiry_date;
-	}
-
-	public Date getissueDate() {
-		return issueDate;
-	}
-
-	public void setissueDate(Date issueDate) {
-		this.issueDate = issueDate;
-	}
 
 	public String getTicketNumber() {
 		return ticketNumber;
 	}
 
+
+
 	public void setTicketNumber(String ticketNumber) {
 		this.ticketNumber = ticketNumber;
 	}
 
-	public int getNumberOfKids() {
-		return numberOfKids;
-	}
 
-	public void setNumberOfKids(int numberOfKids) {
-		this.numberOfKids = numberOfKids;
-	}
-
-	public int getNumberOfInfants() {
-		return numberOfInfants;
-	}
-
-	public void setNumberOfInfants(int numberOfInfants) {
-		this.numberOfInfants = numberOfInfants;
-	}
-
-	public Date getIssueDate() {
-		return issueDate;
-	}
-
-	public void setIssueDate(Date issueDate) {
-		this.issueDate = issueDate;
-	}
-
-	public double getGrossPriceAmnt() {
-		return grossPriceAmnt;
-	}
-
-	public void setGrossPriceAmnt(double grossPriceAmnt) {
-		this.grossPriceAmnt = grossPriceAmnt;
-	}
-
-	public double getTaxesAmnt() {
-		return taxesAmnt;
-	}
-
-	public void setTaxesAmnt(double taxesAmnt) {
-		this.taxesAmnt = taxesAmnt;
-	}
-
-	public double getOtherAmnt() {
-		return otherAmnt;
-	}
-
-	public void setOtherAmnt(double otherAmnt) {
-		this.otherAmnt = otherAmnt;
-	}
-
-	public int getNumberOfDisabled() {
-		return numberOfDisabled;
-	}
-
-	public void setNumberOfDisabled(int numberOfDisabled) {
-		this.numberOfDisabled = numberOfDisabled;
-	}
-
-	public int getNumberOfAdults() {
-		return numberOfAdults;
-	}
-
-	public void setNumberOfAdults(int numberOfAdults) {
-		this.numberOfAdults = numberOfAdults;
-	}
-
-	public TICKET_STATUS getStatus() {
-		return status;
-	}
-
-	public void setStatus(TICKET_STATUS status) {
-		this.status = status;
-	}
 
 	public String getRefNumber() {
 		return refNumber;
 	}
 
+
+
 	public void setRefNumber(String refNumber) {
 		this.refNumber = refNumber;
 	}
+
+
+
+	public int getNumberOfAdults() {
+		return numberOfAdults;
+	}
+
+
+
+	public void setNumberOfAdults(int numberOfAdults) {
+		this.numberOfAdults = numberOfAdults;
+	}
+
+
+
+	public int getNumberOfKids() {
+		return numberOfKids;
+	}
+
+
+
+	public void setNumberOfKids(int numberOfKids) {
+		this.numberOfKids = numberOfKids;
+	}
+
+
+
+	public int getNumberOfInfants() {
+		return numberOfInfants;
+	}
+
+
+
+	public void setNumberOfInfants(int numberOfInfants) {
+		this.numberOfInfants = numberOfInfants;
+	}
+
+
+
+	public int getNumberOfDisabled() {
+		return numberOfDisabled;
+	}
+
+
+
+	public void setNumberOfDisabled(int numberOfDisabled) {
+		this.numberOfDisabled = numberOfDisabled;
+	}
+
+
+
+	public Date getIssueDate() {
+		return issueDate;
+	}
+
+
+
+	public void setIssueDate(Date issueDate) {
+		this.issueDate = issueDate;
+	}
+
+
+
+	public Date getExpiry_date() {
+		return expiry_date;
+	}
+
+
+
+	public void setExpiry_date(Date expiry_date) {
+		this.expiry_date = expiry_date;
+	}
+
+
+
+	public TICKET_STATUS getStatus() {
+		return status;
+	}
+
+
+
+	public void setStatus(TICKET_STATUS status) {
+		this.status = status;
+	}
+
+
+
+	public double getGrossPriceAmnt() {
+		return grossPriceAmnt;
+	}
+
+
+
+	public void setGrossPriceAmnt(double grossPriceAmnt) {
+		this.grossPriceAmnt = grossPriceAmnt;
+	}
+
+
+
+	public double getTaxesAmnt() {
+		return taxesAmnt;
+	}
+
+
+
+	public void setTaxesAmnt(double taxesAmnt) {
+		this.taxesAmnt = taxesAmnt;
+	}
+
+
+
+	public double getOtherAmnt() {
+		return otherAmnt;
+	}
+
+
+
+	public void setOtherAmnt(double otherAmnt) {
+		this.otherAmnt = otherAmnt;
+	}
+
+
 
 	@Override
 	public String toString() {
@@ -212,6 +254,14 @@ public class Ticket {
 				+ ", numberOfDisabled=" + numberOfDisabled + ", expiry_date=" + expiry_date + ", status=" + status
 				+ ", issueDate=" + issueDate + ", grossPriceAmnt=" + grossPriceAmnt + ", taxesAmnt=" + taxesAmnt
 				+ ", otherAmnt=" + otherAmnt + "]";
+	}
+
+	public Trip getTrip() {
+		return trip;
+	}
+
+	public void setTrip(Trip trip) {
+		this.trip = trip;
 	}
 
 }
