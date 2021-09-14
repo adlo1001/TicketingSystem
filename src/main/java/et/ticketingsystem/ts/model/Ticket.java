@@ -15,22 +15,8 @@ public class Ticket {
 	private int id;
 
 	public enum TICKET_STATUS {
-		VALID("VA"), PAID("PA"), BOOKED("BO"), EXPIRED("EX"), EXTENEDED("ET"), CONSUMED("CO"), INVALID("IN"),
-		PENDING("PN");
-
-		String code;
-
-		private TICKET_STATUS(String code) {
-			this.code = code;
-		}
-
-		public String getCode() {
-			return code;
-		}
-
-		public void setCode(String code) {
-			this.code = code;
-		}
+		VALID, PAID, BOOKED, EXPIRED, EXTENEDED, CONSUMED, INVALID,
+		PENDING;
 
 	}
 
@@ -99,7 +85,6 @@ public class Ticket {
 		this.otherAmnt = otherAmnt;
 	}
 
-	@NotNull
 	public long getId() {
 		return id;
 	}

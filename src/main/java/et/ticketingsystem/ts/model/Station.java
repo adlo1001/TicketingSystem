@@ -32,10 +32,13 @@ public class Station {
 		super();
 	}
 
-	public Station(String stationName, String city, String subcity, String description) {
+	public Station(@NotBlank String stationName, @NotBlank String city, @NotBlank String region, String province,
+			String subcity, String description) {
 		super();
 		this.stationName = stationName;
 		this.city = city;
+		this.region = region;
+		this.province = province;
 		this.subcity = subcity;
 		this.description = description;
 	}
@@ -96,10 +99,19 @@ public class Station {
 		this.province = province;
 	}
 
+	public String getProvince() {
+		return province;
+	}
+
+	public void setProvince(String province) {
+		this.province = province;
+	}
+
 	@Override
 	public String toString() {
 		return "Station [id=" + id + ", stationName=" + stationName + ", city=" + city + ", region=" + region
 				+ ", province=" + province + ", subcity=" + subcity + ", description=" + description + "]";
 	}
+
 
 }

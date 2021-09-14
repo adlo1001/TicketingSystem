@@ -12,46 +12,18 @@ public class Passenger {
 	private int id;
 
 	public enum PASSENGERCLASS {
-		ECONOMY("E"), BUSINUSS("B"), VIP("V");
+		ECONOMY, BUSINUSS, VIP;
 
-		private String code;
-
-		private PASSENGERCLASS(String code) {
-			this.code = code;
-		}
-
-		public String getCode() {
-			return code;
-		}
 	}
 
 	public enum STATUS {
-		SINGLE("S"), MULTIPLE("M");
-
-		private String code;
-
-		private STATUS(String code) {
-			this.code = code;
-		}
-
-		public String getCode() {
-			return code;
-		}
+		SINGLE, MULTIPLE;
 
 	}
 
 	public enum GENDER {
-		MALE("M"), FEMALE("F");
+		MALE, FEMALE;
 
-		private String code;
-
-		private GENDER(String code) {
-			this.code = code;
-		}
-
-		public String getCode() {
-			return code;
-		}
 	}
 
 	@Column(name = "firstName")
@@ -82,13 +54,16 @@ public class Passenger {
 	private STATUS status;
 
 	@OneToMany(cascade = CascadeType.ALL)
-	@Embedded
 	List<Address> addresses;
 
 	@OneToMany(cascade = CascadeType.ALL)
-	// @JoinColumn(unique = true)
-	@Embedded
-	List<Identification> identifications;
+	List<Identification> _identifications;
+ 
+	
+	public Passenger() {
+		super();
+
+	}
 
 	public Passenger(int id, String firstName, String middleName, String lastName, GENDER _gender, int age,
 			boolean isInfant, boolean isChild, boolean isTeen, PASSENGERCLASS passengerCLASS, String disablity_status,
@@ -107,7 +82,7 @@ public class Passenger {
 		this.disablity_status = disablity_status;
 		this.status = status;
 		this.addresses = addresses;
-		this.identifications = identifications;
+		this._identifications = identifications;
 	}
 
 	public int getId() {
@@ -219,11 +194,11 @@ public class Passenger {
 	}
 
 	public List<Identification> getIdentifications() {
-		return identifications;
+		return _identifications;
 	}
 
 	public void setIdentifications(List<Identification> identifications) {
-		this.identifications = identifications;
+		this._identifications = identifications;
 	}
 
 	public void setAddress(List<Address> address) {
@@ -271,7 +246,7 @@ public class Passenger {
 		return "Passenger [id=" + id + ", firstName=" + firstName + ", middleName=" + middleName + ", lastName="
 				+ lastName + ", _gender=" + _gender + ", age=" + age + ", isInfant=" + isInfant + ", isChild=" + isChild
 				+ ", isTeen=" + isTeen + ", passengerCLASS=" + passengerCLASS + ", disablity_status=" + disablity_status
-				+ ", status=" + status + ", addresses=" + addresses + ", identifications=" + identifications + "]";
+				+ ", status=" + status + ", addresses=" + addresses + ", identifications=" + "]";
 	}
 
 }

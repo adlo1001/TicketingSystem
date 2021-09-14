@@ -9,26 +9,21 @@ public class Touchpoint {
 	private int id;
 
 	public enum TOUCHPOINT {
-		ANDROID("A"), iPHONE("I"), WEB("W");
-
-		String code;
-
-		private TOUCHPOINT(String code) {
-			this.code = code;
-		}
-
-		public String getCode() {
-			return code;
-		}
-
-		public void setCode(String code) {
-			this.code = code;
-		}
-
+		ANDROID, iPHONE, WEB;
 	}
 
 	@Enumerated(EnumType.STRING)
 	private TOUCHPOINT touchPointName;
+
+	public Touchpoint() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Touchpoint(TOUCHPOINT touchPointName) {
+		super();
+		this.touchPointName = touchPointName;
+	}
 
 	public long getId() {
 		return id;
@@ -44,6 +39,11 @@ public class Touchpoint {
 
 	public void setTouchPointName(TOUCHPOINT touchPointName) {
 		this.touchPointName = touchPointName;
+	}
+
+	@Override
+	public String toString() {
+		return "Touchpoint [id=" + id + ", touchPointName=" + touchPointName + "]";
 	}
 
 }

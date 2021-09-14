@@ -10,22 +10,26 @@ public class Payment {
 	private int id;
 
 	public enum CHANNEL {
-		MOBILEBANKING("M"), INTERNETBANKING("I"), SMS("S"), CASH("C"), WALLET("W"), OTHER("O");
+		MOBILEBANKING, INTERNETBANKING, SMS, CASH, WALLET, OTHER;
+	}
 
-		String code;
+	public Payment() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Payment(CHANNEL paymentMode) {
+		super();
+		this.paymentMode = paymentMode;
+	}
 
-		private CHANNEL(String code) {
-			this.code = code;
-		}
 
-		public String getCode() {
-			return code;
-		}
 
-		public void setCode(String code) {
-			this.code = code;
-		}
+	public CHANNEL getPaymentMode() {
+		return paymentMode;
+	}
 
+	public void setPaymentMode(CHANNEL paymentMode) {
+		this.paymentMode = paymentMode;
 	}
 
 	// @Enumerated(EnumType.STRING)

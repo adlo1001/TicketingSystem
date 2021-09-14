@@ -23,21 +23,21 @@ public class RouteController {
 	@Autowired
 	RouteService routeService;
 
-	@GetMapping("/routes")
+	public @GetMapping("/routes")
 	Iterable<Route> read() {
 		return routeService.findAll();
 	}
 
-	@PostMapping("/routes")
+	public @PostMapping("/routes")
 	Route create(@RequestBody Route route) {
 		return routeService.save(route);
 	}
 
-	@PutMapping("/routes")
+	public @PutMapping("/routes")
 	Route update(@RequestBody Route route) {
 		return routeService.save(route);
 	}
-	@DeleteMapping("/routes/{id}")
+	public @DeleteMapping("/routes/{id}")
 	void delete(@PathVariable int id) {
 		routeService.deleteById(id);
 	}

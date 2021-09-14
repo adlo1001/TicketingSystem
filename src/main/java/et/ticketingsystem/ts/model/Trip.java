@@ -1,31 +1,26 @@
 package et.ticketingsystem.ts.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
 
 @Entity
-public class Trip {
+public class Trip{
 
 	@Id
 	@GeneratedValue
 	private int id;
-
-	@OneToOne(cascade=CascadeType.ALL)
-	private Station initialStation;
-
-	@OneToOne(cascade=CascadeType.ALL)
-	private Station finalStation;
-
-	@OneToOne(cascade=CascadeType.ALL)
+	
+	@OneToOne(cascade = CascadeType.ALL)
 	private Transportation trans;
 
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne
 	private Route route;
 
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<TripPackage> tripPackage;
+	//@OneToMany(cascade = CascadeType.ALL)
+	//private List<TripPackage> tripPackage;
 
 	private Date initialTime;
 	private Date finalTime;
@@ -40,9 +35,6 @@ public class Trip {
 	@Column(name = "numberOfPassengers")
 	private int numberOfPassenger;
 
-	@OneToOne(fetch = FetchType.LAZY)
-	private TripHistory history;
-
 	public Trip() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -51,8 +43,6 @@ public class Trip {
 	public Trip(Station initialStation, Station finalStation, Date initialTime, Date finalTime, double tripPeriod,
 			Date refreshmentBegin, Date refreshmentEnd, String transportationMode, int numberOfPassenger) {
 		super();
-		this.initialStation = initialStation;
-		this.finalStation = finalStation;
 		this.initialTime = initialTime;
 		this.finalTime = finalTime;
 		this.tripPeriod = tripPeriod;
@@ -66,21 +56,6 @@ public class Trip {
 		return id;
 	}
 
-	public Station getInitialStation() {
-		return initialStation;
-	}
-
-	public void setInitialStation(Station initialStation) {
-		this.initialStation = initialStation;
-	}
-
-	public Station getFinalStation() {
-		return finalStation;
-	}
-
-	public void setFinalStation(Station finalStation) {
-		this.finalStation = finalStation;
-	}
 
 	public Date getInitialTime() {
 		return initialTime;
@@ -150,22 +125,6 @@ public class Trip {
 		this.trans = trans;
 	}
 
-	public List<TripPackage> getTripPackage() {
-		return tripPackage;
-	}
-
-	public void setTripPackage(List<TripPackage> tripPackage) {
-		this.tripPackage = tripPackage;
-	}
-
-	public TripHistory getHistory() {
-		return history;
-	}
-
-	public void setHistory(TripHistory history) {
-		this.history = history;
-	}
-
 	public Route getRoute() {
 		return route;
 	}
@@ -176,11 +135,11 @@ public class Trip {
 
 	@Override
 	public String toString() {
-		return "Trip [id=" + id + ", initialStation=" + initialStation + ", finalStation=" + finalStation + ", trans="
-				+ trans + ", route=" + route + ", tripPackage=" + tripPackage + ", initialTime=" + initialTime
+		return "Trip [id=" + id + ", trans="
+				+ trans + ", route=" + route  + ", initialTime=" + initialTime
 				+ ", finalTime=" + finalTime + ", tripPeriod=" + tripPeriod + ", refreshmentBegin=" + refreshmentBegin
 				+ ", refreshmentEnd=" + refreshmentEnd + ", transportationMode=" + transportationMode
-				+ ", numberOfPassenger=" + numberOfPassenger + ", history=" + history + "]";
+				+ ", numberOfPassenger=" + numberOfPassenger +  "]";
 	}
 
 }

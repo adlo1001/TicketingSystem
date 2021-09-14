@@ -18,32 +18,31 @@ import et.ticketingsystem.ts.service.PassengerService;
 import et.ticketingsystem.ts.service.TransportationService;
 
 @RestController
-@RequestMapping(path = { "/trans" })
 public class TransportationController {
 	@Autowired
 	TransportationService transService;
 
-	@PostMapping("/add")
+	@PostMapping("/trans")
 	public void create(@RequestBody Transportation trans) {
 		transService.save(trans);
 	}
 
-	@GetMapping(value = "/{id}", produces = "application/json")
+	@GetMapping(value = "/trans/{id}", produces = "application/json")
 	public Optional<Transportation> get(@PathVariable int id) {
 		return transService.findById(id);
 	}
 
-	@GetMapping(value = "/getTransportations", produces = "application/json")
+	@GetMapping(value = "/trans", produces = "application/json")
 	public Iterable<Transportation> getList() {
 		return transService.findAll();
 	}
 
-	@PutMapping(value = "/transportation", produces = "application/json")
+	@PutMapping(value = "/trans", produces = "application/json")
 	public void update(@RequestBody Transportation trans) {
 		transService.save(trans);
 	}
 
-	@DeleteMapping(value = "/delete/{id}", produces = "application/json")
+	@DeleteMapping(value = "/trans/delete/{id}", produces = "application/json")
 	public void delete(@PathVariable int id) {
 		transService.deleteById(id);
 	}

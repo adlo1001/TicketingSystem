@@ -23,6 +23,18 @@ public class TripHistory {
 	
 	@OneToOne(cascade=CascadeType.ALL)
 	private Trip trip;
+	
+	
+	public TripHistory() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public TripHistory(Trip trip, Date tripDate) {
+		super();
+		this.trip = trip;
+		this.tripDate = tripDate;
+	}
 
 	public long getId() {
 		return id;

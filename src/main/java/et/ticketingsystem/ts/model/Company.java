@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 
 @Entity
@@ -21,10 +22,7 @@ public class Company {
 
 	@NotBlank
 	private String companyLogo;
-
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<Address> addresses;
-
+	
 	public Company() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -34,7 +32,6 @@ public class Company {
 		super();
 		this.companyName = companyName;
 		this.companyLogo = companyLogo;
-		this.addresses = addresses;
 	}
 
 	public int getId() {
@@ -61,20 +58,10 @@ public class Company {
 		this.companyLogo = companyLogo;
 	}
 
-	public List<Address> getAddresses() {
-		return addresses;
-	}
-
-	public void setAddresses(List<Address> addresses) {
-		this.addresses = addresses;
-	}
-
 	@Override
 	public String toString() {
-		return "Company [id=" + id + ", companyName=" + companyName + ", companyLogo=" + companyLogo + ", addresses="
-				+ addresses + ", getId()=" + getId() + ", getCompanyName()=" + getCompanyName() + ", getCompanyLogo()="
-				+ getCompanyLogo() + ", getAddresses()=" + getAddresses() + ", getClass()=" + getClass()
-				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+		return "Company [id=" + id + ", companyName=" + companyName + ", companyLogo=" + companyLogo + "]";
 	}
+
 
 }

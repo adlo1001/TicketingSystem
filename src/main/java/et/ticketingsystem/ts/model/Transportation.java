@@ -9,9 +9,12 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.springframework.data.rest.core.annotation.RestResource;
 
 @Entity
 public class Transportation {
@@ -21,35 +24,18 @@ public class Transportation {
 	private int id;
 
 	public enum TRAMODE {
-		MINIBUS("MB"), BUS("BS"), TRAIN("TR"), PICKUP("PU"), SUV("SV"), SEDAN("SN"), SMALLCAR("SC");
-
-		String code;
-
-		private TRAMODE(String code) {
-			this.code = code;
-		}
-
-		public String getCode() {
-			return code;
-		}
-
-		public void setCode(String code) {
-			this.code = code;
-		}
-
+		MINIBUS, BUS, TRAIN, PICKUP, SUV, SEDAN, SMALLCAR;
 	}
 
-	@Column(name = "vehicle")
 	private String vehicle;
 
-	@Column(name = "plateNumber")
-	private String plateNumber;
+	private String _plateNumber;
 
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	private Company owner;
 
 	@Column(name = "numberOfSeat")
-	private String numberOfSeat;
+	private int numberOfSeat;
 
 	private int transporationClass;
 
@@ -63,17 +49,18 @@ public class Transportation {
 	private boolean isSmokingAllowed;
 	private boolean isDrinkingAllowed;
 
+	@OneToOne
+	private Trip trip;
+
 	public Transportation() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 
-	public Transportation(String vehicle, String plateNumber, Company owner, String numberOfSeat, int transporationClass,
-			TRAMODE _mode, Payment paymentMode, boolean isPetAllowed, boolean isSmokingAllowed,
-			boolean isDrinkingAllowed) {
+	public Transportation(String vehicle, String _plateNumber, Company owner, int numberOfSeat, int transporationClass,
+			TRAMODE _mode, boolean isPetAllowed, boolean isSmokingAllowed, boolean isDrinkingAllowed, Trip trip) {
 		super();
-
 		this.vehicle = vehicle;
-		this.plateNumber = plateNumber;
+		this._plateNumber = _plateNumber;
 		this.owner = owner;
 		this.numberOfSeat = numberOfSeat;
 		this.transporationClass = transporationClass;
@@ -81,6 +68,15 @@ public class Transportation {
 		this.isPetAllowed = isPetAllowed;
 		this.isSmokingAllowed = isSmokingAllowed;
 		this.isDrinkingAllowed = isDrinkingAllowed;
+		this.trip = trip;
+	}
+
+	public Trip getTrip() {
+		return trip;
+	}
+
+	public void setTrip(Trip trip) {
+		this.trip = trip;
 	}
 
 	public int getId() {
@@ -99,14 +95,6 @@ public class Transportation {
 		this.vehicle = vehicle;
 	}
 
-	public String getplateNumber() {
-		return plateNumber;
-	}
-
-	public void setplateNumber(String plateNumber) {
-		this.plateNumber = plateNumber;
-	}
-
 	public Company getOwner() {
 		return owner;
 	}
@@ -115,18 +103,68 @@ public class Transportation {
 		this.owner = owner;
 	}
 
-	public String getNumberOfSeat() {
+	public int getNumberOfSeat() {
 		return numberOfSeat;
 	}
 
-	public void setNumberOfSeat(String numberOfSeat) {
+	public void setNumberOfSeat(int numberOfSeat) {
 		this.numberOfSeat = numberOfSeat;
+	}
+
+	public int getTransporationClass() {
+		return transporationClass;
+	}
+
+	public void setTransporationClass(int transporationClass) {
+		this.transporationClass = transporationClass;
+	}
+
+	public TRAMODE get_mode() {
+		return _mode;
+	}
+
+	public void set_mode(TRAMODE _mode) {
+		this._mode = _mode;
+	}
+
+	public boolean isPetAllowed() {
+		return isPetAllowed;
+	}
+
+	public void setPetAllowed(boolean isPetAllowed) {
+		this.isPetAllowed = isPetAllowed;
+	}
+
+	public boolean isSmokingAllowed() {
+		return isSmokingAllowed;
+	}
+
+	public void setSmokingAllowed(boolean isSmokingAllowed) {
+		this.isSmokingAllowed = isSmokingAllowed;
+	}
+
+	public boolean isDrinkingAllowed() {
+		return isDrinkingAllowed;
+	}
+
+	public void setDrinkingAllowed(boolean isDrinkingAllowed) {
+		this.isDrinkingAllowed = isDrinkingAllowed;
+	}
+
+	public String get_plateNumber() {
+		return _plateNumber;
+	}
+
+	public void set_plateNumber(String _plateNumber) {
+		this._plateNumber = _plateNumber;
 	}
 
 	@Override
 	public String toString() {
-		return "Transportation [id=" + id + ", vehicle=" + vehicle + ", plateNumber=" + plateNumber + ", owner=" + owner
-				+ ", numberOfSeat=" + numberOfSeat + "]";
+		return "Transportation [id=" + id + ", vehicle=" + vehicle + ", plateNumber=" + _plateNumber + ", owner="
+				+ owner + ", numberOfSeat=" + numberOfSeat + ", transporationClass=" + transporationClass + ", _mode="
+				+ _mode + ", isPetAllowed=" + isPetAllowed + ", isSmokingAllowed=" + isSmokingAllowed
+				+ ", isDrinkingAllowed=" + isDrinkingAllowed + "]";
 	}
 
 }

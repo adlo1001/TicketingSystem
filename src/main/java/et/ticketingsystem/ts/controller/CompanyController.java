@@ -21,22 +21,26 @@ public class CompanyController {
 	CompanyService companyService;
 
 	@GetMapping("/company")
-	Iterable<Company> read() {
+	public Iterable<Company> read() {
 		return companyService.findAll();
 	}
 
 	@PostMapping("/company")
-	Company create(@RequestBody Company company) {
-		return companyService.save(company);
+	public void create(@RequestBody Company company) {
+		companyService.save(company);
 	}
 
 	@PutMapping("/company")
-	Company update(@RequestBody Company company) {
+	public Company update(@RequestBody Company company) {
 		return companyService.save(company);
 	}
 	@DeleteMapping("/company/{id}")
-	void delete(@PathVariable int id) {
+	public void delete(@PathVariable int id) {
 		companyService.deleteById(id);
+	}
+	@DeleteMapping("/company")
+	public void deleteAll() {
+		companyService.deleteAll();
 	}
 
 }

@@ -30,7 +30,7 @@ public class StationController {
 
 	}
 
-	@GetMapping(value = "/{station}", produces = "application/json")
+	@GetMapping(value = "/stations/{stationName}", produces = "application/json")
 	public Optional<Station> get(@PathVariable String stationName) {
 		return stationService.findByStationName(stationName);
 	}

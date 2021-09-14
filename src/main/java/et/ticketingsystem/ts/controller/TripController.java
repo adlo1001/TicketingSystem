@@ -16,30 +16,30 @@ import et.ticketingsystem.ts.model.User;
 import et.ticketingsystem.ts.service.TripService;
 
 @RestController
-@RequestMapping(path = { "/trip" })
+//@RequestMapping(path = { "/trip" },produces = {"application/xml", "application/json"}, consumes = {"application/xml", "application/json"})
+@RequestMapping(path= {"/trip"})
 public class TripController {
 
 	@Autowired
 	TripService tripService;
 
-	@GetMapping("/trip")
-	Iterable<Trip> read() {
+	@GetMapping("/trips")
+	public Iterable<Trip> read() {
 		return tripService.findAll();
 	}
 
-	@PostMapping("/trip")
-	Trip create(@RequestBody Trip trip) {
-		return tripService.save(trip);
+	@PostMapping("/trips")
+	public void create(@RequestBody Trip trip) {
+		 tripService.save(trip);
 	}
 
-	@PutMapping("/trip")
-	Trip update(@RequestBody Trip trip) {
-		return tripService.save(trip);
-
+	@PutMapping("/trips")
+	public void  update(@RequestBody Trip trip) {
+		 tripService.save(trip);
 	}
-
+	
 	@DeleteMapping("/trip/{id}")
-	void delete(@PathVariable int id) {
+	public void delete(@PathVariable int id) {
 		tripService.deleteById(id);
 	}
 

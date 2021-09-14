@@ -1,5 +1,6 @@
 package et.ticketingsystem.ts.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -18,32 +19,48 @@ public class Identification {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
-	@Column(name = "photo")
 	private String photo;
 
-	@Column(name = "attachment")
 	private String attachment;
 
-	@Column(name = "idType")
-	private String idType;
+	private String identificationType;
 
-	@Column(name = "idNumber")
-	private String idNumber;
+	private String identificationNumber;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Passenger passenger;
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	private User user;
-
-	public Identification(int id, String photo, String attachment, String idType, String idNumber) {
+	public Identification() {
 		super();
-		this.id = id;
+
+	}
+
+
+	public Identification(String photo, String attachment, String identificationType, String identificationNumber) {
+		super();
 		this.photo = photo;
 		this.attachment = attachment;
-		this.idType = idType;
-		this.idNumber = idNumber;
+		this.identificationType = identificationType;
+		this.identificationNumber = identificationNumber;
 	}
+
+
+	public String getIdentificationType() {
+		return identificationType;
+	}
+
+
+	public void setIdentificationType(String identificationType) {
+		this.identificationType = identificationType;
+	}
+
+
+	public String getIdentificationNumber() {
+		return identificationNumber;
+	}
+
+
+	public void setIdentificationNumber(String identificationNumber) {
+		this.identificationNumber = identificationNumber;
+	}
+
 
 	public long getId() {
 		return id;
@@ -69,26 +86,10 @@ public class Identification {
 		this.attachment = attachment;
 	}
 
-	public String getidType() {
-		return idType;
-	}
-
-	public void setidType(String idType) {
-		this.idType = idType;
-	}
-
-	public String getidNumber() {
-		return idNumber;
-	}
-
-	public void setidNumber(String idNumber) {
-		this.idNumber = idNumber;
-	}
-
 	@Override
 	public String toString() {
-		return "Identification [id=" + id + ", photo=" + photo + ", attachment=" + attachment + ", idType=" + idType
-				+ ", idNumber=" + idNumber + "]";
+		return "Identification [id=" + id + ", photo=" + photo + ", attachment=" + attachment + ", identificationType="
+				+ identificationType + ", identificationNumber=" + identificationNumber + "]";
 	}
 
 }

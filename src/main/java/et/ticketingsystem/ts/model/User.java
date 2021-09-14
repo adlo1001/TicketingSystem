@@ -7,12 +7,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -49,17 +48,16 @@ public class User {
 	@OneToMany(cascade = CascadeType.ALL)
 	List<Address> addresses;
 
-	@OneToMany(cascade = CascadeType.ALL)
-	List<Identification> identification;
+	@OneToOne (cascade=CascadeType.ALL)
+	Identification _identification;
 
 	public User() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public User(@Size(min = 6) @NotBlank String userId, @NotBlank String password, @NotBlank String firstName,
 			@NotBlank String middleName, String lastNameName, _ROLE _role, List<Address> addresses,
-			List<Identification> identification) {
+			Identification identification) {
 		super();
 		this.userId = userId;
 		this.password = password;
@@ -68,7 +66,7 @@ public class User {
 		this.lastName = lastNameName;
 		this._role = _role;
 		this.addresses = addresses;
-		this.identification = identification;
+		this._identification = identification;
 	}
 
 	public int getId() {
@@ -139,6 +137,14 @@ public class User {
 	public String toString() {
 		return "User [userId=" + userId + ", password=" + password + ", firstName=" + firstName + ", middleName="
 				+ middleName + ", lastNameName=" + lastName + ", addresses=" + addresses + "]";
+	}
+
+	public Identification getIdentification() {
+		return _identification;
+	}
+
+	public void setIdentification(Identification identification) {
+		this._identification = identification;
 	}
 
 
