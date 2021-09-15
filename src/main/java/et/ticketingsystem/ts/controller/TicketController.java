@@ -1,5 +1,8 @@
 package et.ticketingsystem.ts.controller;
 
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,14 +27,54 @@ public class TicketController {
 	TicketingService ticketService;
 
 	@GetMapping("/tickets")
-	public Iterable<Ticket> read() {
+	public Iterable<Ticket> readAll() {
 		if (ticketService.count()!=0)
 		return ticketService.findAll();
 		else 
 			throw new ErrorMessage("404","Ticket not found! ");
 	}
+   
+	@GetMapping("/ticketsValid")
+	public Iterable<Ticket> readValid() {
+		
+		String pattern = "yyyy-MM-dd";
+		//String pattern = "yyyy-MM-DDTHH";
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+		String date = simpleDateFormat.format(new Date());
+		Date expiryDate = new Date();
+	
+		if (ticketService.count()!=0)
+		   return ticketService.findByExpiryDateTimeBefore(expiryDate);
+		else 
+			throw new ErrorMessage("404","Ticket not found! ");
+	}
+
+	@GetMapping("/ticketsByIssueDate")
+	public Iterable<Ticket> readByIssue() {
+		//String pattern = "yyyy-MM-dd";
+		String pattern = "yyyy-MM-DDTHH";
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+
+		String date = simpleDateFormat.format(new Date());
+		Date issueDate = new Date();
+		
+		System.out.println("System Date:"+ issueDate);
+		if (ticketService.count()!=0)
+			
+		   return ticketService.findByExpiryDate(issueDate);
+		else 
+			throw new ErrorMessage("404","Ticket not found! ");
+	}
 
 	
+	@GetMapping("/ticketsByTrip/{trip_id}")
+	public Iterable<Ticket> readByTickets(@PathVariable String trip_id) {
+		if (ticketService.count()!=0)
+		   return ticketService.findByTotalTicketsForTrip( trip_id);
+		else 
+			throw new ErrorMessage("404","Ticket not found! ");
+	}
+
 	@GetMapping("/tickets/{id}")
 	public Optional<Ticket> read(@PathVariable int id) {
 		if (ticketService.existsById(id))
@@ -40,6 +83,8 @@ public class TicketController {
 			throw new ErrorMessage("404",id+" -Ticket not found! ");
 	}
 
+	
+	
 	
 	@PostMapping("/tickets")
 	public void  create(@RequestBody Ticket ticket) {

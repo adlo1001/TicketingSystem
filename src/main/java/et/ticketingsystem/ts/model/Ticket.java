@@ -42,8 +42,8 @@ public class Ticket {
 	private Date issueDate;
 
 	@NotNull(message = "Please enter expiry Date!")
-	@Column(name = "expiry_date")
-	private Date expiry_date;
+	@Column(name = "expiryDate")
+	private Date expiryDate;
 
 	@Enumerated(EnumType.STRING)
 	private TICKET_STATUS status;
@@ -80,7 +80,7 @@ public class Ticket {
 		this.numberOfInfants = numberOfInfants;
 		this.numberOfDisabled = numberOfDisabled;
 		this.issueDate = issueDate;
-		this.expiry_date = expiry_date;
+		this.expiryDate = expiry_date;
 		this.status = status;
 		this.grossPriceAmnt = grossPriceAmnt;
 		this.taxesAmnt = taxesAmnt;
@@ -188,13 +188,13 @@ public class Ticket {
 
 
 	public Date getExpiry_date() {
-		return expiry_date;
+		return expiryDate;
 	}
 
 
 
 	public void setExpiry_date(Date expiry_date) {
-		this.expiry_date = expiry_date;
+		this.expiryDate = expiry_date;
 	}
 
 
@@ -251,7 +251,7 @@ public class Ticket {
 	public String toString() {
 		return "Ticket [id=" + id + ", ticketNumber=" + ticketNumber + ", refNumber=" + refNumber + ", numberOfAdults="
 				+ numberOfAdults + ", numberOfKids=" + numberOfKids + ", numberOfInfants=" + numberOfInfants
-				+ ", numberOfDisabled=" + numberOfDisabled + ", expiry_date=" + expiry_date + ", status=" + status
+				+ ", numberOfDisabled=" + numberOfDisabled + ", expiry_date=" + expiryDate + ", status=" + status
 				+ ", issueDate=" + issueDate + ", grossPriceAmnt=" + grossPriceAmnt + ", taxesAmnt=" + taxesAmnt
 				+ ", otherAmnt=" + otherAmnt + "]";
 	}
