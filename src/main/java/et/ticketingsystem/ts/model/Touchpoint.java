@@ -9,7 +9,7 @@ public class Touchpoint {
 	private int id;
 
 	public enum TOUCHPOINT {
-		ANDROID, iPHONE, WEB;
+		ANDROID, iPHONE, WEB,USSD,TELEBIRR, EBIRR, CBEBIRR;
 	}
 
 	@Enumerated(EnumType.STRING)

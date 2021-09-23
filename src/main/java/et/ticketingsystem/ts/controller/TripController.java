@@ -28,6 +28,7 @@ public class TripController {
 		return tripService.findAll();
 	}
 
+	
 	@PostMapping("/trips")
 	public void create(@RequestBody Trip trip) {
 		 tripService.save(trip);
@@ -38,9 +39,15 @@ public class TripController {
 		 tripService.save(trip);
 	}
 	
-	@DeleteMapping("/trip/{id}")
+	@DeleteMapping("/trips/{id}")
 	public void delete(@PathVariable int id) {
 		tripService.deleteById(id);
 	}
 
+	@DeleteMapping("/trips")
+	public void deleteAll() {
+		tripService.deleteAll();
+	}
+	
+	
 }

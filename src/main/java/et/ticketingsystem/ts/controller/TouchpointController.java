@@ -20,13 +20,13 @@ import et.ticketingsystem.ts.service.TouchpointService;
 
 
 @RestController
-@RequestMapping(path = { "/touchpoint" })
+@RequestMapping(path = { "/touchpoints" })
 public class TouchpointController {
 
 	@Autowired
 	TouchpointService touchPointService;
 
-	@PostMapping("/add")
+	@PostMapping("")
 	public void create(@RequestBody Touchpoint Touchpoint) {
 		touchPointService.save(Touchpoint);
 	}
@@ -36,17 +36,17 @@ public class TouchpointController {
 		return touchPointService.findById(id);
 	}
 
-	@GetMapping(value = "/getTouchpoints", produces = "application/json")
+	@GetMapping(value = "", produces = "application/json")
 	public Iterable<Touchpoint> getList() {
 		return touchPointService.findAll();
 	}
 
-	@PutMapping(value = "/Touchpoint", produces = "application/json")
+	@PutMapping(value = "", produces = "application/json")
 	public void update(@RequestBody Touchpoint Touchpoint) {
 		touchPointService.save(Touchpoint);
 	}
 
-	@DeleteMapping(value = "/delete/{id}", produces = "application/json")
+	@DeleteMapping(value = "/{id}", produces = "application/json")
 	public void delete(@PathVariable int id) {
 		touchPointService.deleteById(id);
 	}

@@ -17,35 +17,35 @@ import et.ticketingsystem.ts.service.TripPackageService;
 import et.ticketingsystem.ts.service.TripService;
 
 @RestController
-@RequestMapping(path = { "/trip" })
+@RequestMapping(path= {"/trips"})
 public class TripPackageController {
 
 	@Autowired
 	TripPackageService tripPackageService;
 
 	@GetMapping("/packages")
-	Iterable<TripPackage> read() {
+	public Iterable<TripPackage> read() {
 		return tripPackageService.findAll();
 	}
 
 	@PostMapping("/packages")
-	TripPackage create(@RequestBody TripPackage trip_package) {
-		return tripPackageService.save(trip_package);
+	public void create(@RequestBody TripPackage trip_package) {
+		 tripPackageService.save(trip_package);
 	}
 
 	@PutMapping("/packages")
-	TripPackage update(@RequestBody TripPackage trip_package) {
-		return tripPackageService.save(trip_package);
+	public void update(@RequestBody TripPackage trip_package) {
+		tripPackageService.save(trip_package);
 
 	}
 
 	@DeleteMapping("/packages/{id}")
-	void delete(@PathVariable int id) {
+	public void delete(@PathVariable int id) {
 		tripPackageService.deleteById(id);
 	}
 
 	@DeleteMapping("/packages")
-	void delete() {
+	public void delete() {
 		tripPackageService.deleteAll();
 	}
 

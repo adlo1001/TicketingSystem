@@ -5,29 +5,46 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Future;
 
 @Entity
-public class Trip{
+public class Trip {
 
 	@Id
 	@GeneratedValue
 	private int id;
 	
+	
+	public enum TRIPSTATUS {
+		TICKETING, FULL, ONBOARDING, FINISHED, EXTENDED, CANCELLED;
+	}
+
 	@OneToOne(cascade = CascadeType.ALL)
 	private Transportation trans;
 
 	@OneToOne
 	private Route route;
 
-	//@OneToMany(cascade = CascadeType.ALL)
-	//private List<TripPackage> tripPackage;
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<TripPackage> tripPackage;
 
+	@Future
 	private Date initialTime;
+	@Future
 	private Date finalTime;
+	
+	@Digits(fraction = 1, integer = 2)
 	private double tripPeriod;
 
+	@Future
 	private Date refreshmentBegin;
+	
+	@Future
 	private Date refreshmentEnd;
+	
+	@Enumerated(EnumType.STRING)
+	private TRIPSTATUS tripStatus;
 
 	@Column(name = "transportationMode")
 	private String transportationMode;
@@ -37,25 +54,40 @@ public class Trip{
 
 	public Trip() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public Trip(Station initialStation, Station finalStation, Date initialTime, Date finalTime, double tripPeriod,
-			Date refreshmentBegin, Date refreshmentEnd, String transportationMode, int numberOfPassenger) {
+	
+	public Trip(Transportation trans, Route route, List<TripPackage> tripPackage, @Future Date initialTime,
+			@Future Date finalTime, @Digits(fraction = 1, integer = 2) double tripPeriod, @Future Date refreshmentBegin,
+			@Future Date refreshmentEnd, TRIPSTATUS tripStatus, String transportationMode, int numberOfPassenger) {
 		super();
+		this.trans = trans;
+		this.route = route;
+		this.tripPackage = tripPackage;
 		this.initialTime = initialTime;
 		this.finalTime = finalTime;
 		this.tripPeriod = tripPeriod;
 		this.refreshmentBegin = refreshmentBegin;
 		this.refreshmentEnd = refreshmentEnd;
+		this.tripStatus = tripStatus;
 		this.transportationMode = transportationMode;
 		this.numberOfPassenger = numberOfPassenger;
 	}
 
+
+	public TRIPSTATUS getTripStatus() {
+		return tripStatus;
+	}
+
+
+	public void setTripStatus(TRIPSTATUS tripStatus) {
+		this.tripStatus = tripStatus;
+	}
+
+
 	public long getId() {
 		return id;
 	}
-
 
 	public Date getInitialTime() {
 		return initialTime;
@@ -133,13 +165,20 @@ public class Trip{
 		this.route = route;
 	}
 
+	public List<TripPackage> getTripPackage() {
+		return tripPackage;
+	}
+
+	public void setTripPackage(List<TripPackage> tripPackage) {
+		this.tripPackage = tripPackage;
+	}
+
 	@Override
 	public String toString() {
-		return "Trip [id=" + id + ", trans="
-				+ trans + ", route=" + route  + ", initialTime=" + initialTime
+		return "Trip [id=" + id + ", trans=" + trans + ", route=" + route + ", initialTime=" + initialTime
 				+ ", finalTime=" + finalTime + ", tripPeriod=" + tripPeriod + ", refreshmentBegin=" + refreshmentBegin
 				+ ", refreshmentEnd=" + refreshmentEnd + ", transportationMode=" + transportationMode
-				+ ", numberOfPassenger=" + numberOfPassenger +  "]";
+				+ ", numberOfPassenger=" + numberOfPassenger + "]";
 	}
 
 }

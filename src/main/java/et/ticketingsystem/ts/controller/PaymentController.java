@@ -21,23 +21,28 @@ public class PaymentController {
 	PaymentService paymentService;
 
 	@GetMapping("/payments")
-	Iterable<Payment> read() {
+	public Iterable<Payment> read() {
 		return paymentService.findAll();
 	}
 
 	@PostMapping("/payments")
-	Payment create(@RequestBody Payment payment) {
-		return paymentService.save(payment);
+	public void  create(@RequestBody Payment payment) {
+		paymentService.save(payment);
 	}
 
 	@PutMapping("/payments")
-	Payment update(@RequestBody Payment payment) {
-		return paymentService.save(payment);
+	public void  update(@RequestBody Payment payment) {
+		 paymentService.save(payment);
+
+	}
+	@DeleteMapping("/payments/{id}")
+	public void  remove(@PathVariable int id ) {
+		 paymentService.deleteById(id);
 
 	}
 
 	@DeleteMapping("/payements/{id}")
-	void delete(@PathVariable int id) {
-		paymentService.deleteById(id);
+	public void removeAll() {
+		paymentService.deleteAll();
 	}
 }

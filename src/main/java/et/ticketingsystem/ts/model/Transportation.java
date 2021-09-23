@@ -28,7 +28,7 @@ public class Transportation {
 	}
 
 	private String vehicle;
-
+    
 	private String _plateNumber;
 
 	@OneToOne(cascade=CascadeType.ALL)

@@ -10,7 +10,7 @@ public class Payment {
 	private int id;
 
 	public enum CHANNEL {
-		MOBILEBANKING, INTERNETBANKING, SMS, CASH, WALLET, OTHER;
+		BANK, MOBILEBANKING, INTERNETBANKING, SMS, CASH, WALLET, OTHER;
 	}
 
 	public Payment() {

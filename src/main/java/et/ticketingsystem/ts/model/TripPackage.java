@@ -14,18 +14,16 @@ import javax.persistence.OneToOne;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Entity
-@RequestMapping(path = "/tripPackage")
 public class TripPackage {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	@GeneratedValue
+	private int id;
 
 	public enum ITEMCATEGOREY {
 		FOOD, DRINK, BOOK, MOVIE, BED, LUGGAGE;
 	}
 
-	@Column(name = "itemName")
 	private String itemName;
 
 	@Enumerated(EnumType.STRING)
@@ -35,7 +33,7 @@ public class TripPackage {
 
 	private float maxWeightAllowed;
 
-	private int maxNumAllowed;
+	private int maxNumAllowed;	
 
 	//@ManyToOne(fetch = FetchType.LAZY)
 	//private Trip trip;
@@ -59,9 +57,6 @@ public class TripPackage {
 		this.maxNumAllowed = maxNumAllowed;
 	}
 
-	public void setId(long id) {
-		this.id = id;
-	}
 
 	public String getItemName() {
 		return itemName;
@@ -91,7 +86,7 @@ public class TripPackage {
 		return maxWeightAllowed;
 	}
 
-	public void setMaxWeightAllowed(int maxWeightAllowed) {
+	public void setMaxWeightAllowed(float maxWeightAllowed) {
 		this.maxWeightAllowed = maxWeightAllowed;
 	}
 
@@ -103,11 +98,8 @@ public class TripPackage {
 		this.maxNumAllowed = maxNumAllowed;
 	}
 
-
-
-
-	public void setMaxWeightAllowed(float maxWeightAllowed) {
-		this.maxWeightAllowed = maxWeightAllowed;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	@Override

@@ -3,6 +3,7 @@ package et.ticketingsystem.ts.model;
 import java.util.Date;
 
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -48,13 +49,16 @@ public class Ticket {
 	@Enumerated(EnumType.STRING)
 	private TICKET_STATUS status;
 
-	@NotNull
+	@NotNull (message="Please enter price!")
+	@Digits(fraction = 1, integer = 6)
 	private double grossPriceAmnt;
 
-	@NotNull
+	@NotNull(message="Please enter taxes")
+	@Digits(fraction = 1, integer = 6)
 	private double taxesAmnt;
 
 	@NotNull
+	@Digits(fraction = 1, integer = 6)
 	private double otherAmnt;
 	
 	@OneToOne
@@ -64,9 +68,6 @@ public class Ticket {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-
-
 	public Ticket(@NotBlank String ticketNumber, @NotBlank String refNumber, @NotNull @Min(1) int numberOfAdults,
 			int numberOfKids, int numberOfInfants, @NotNull int numberOfDisabled,
 			@NotNull(message = "Please enter issue Date!") Date issueDate,

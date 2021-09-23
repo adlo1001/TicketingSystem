@@ -14,7 +14,6 @@ import javax.validation.constraints.NotBlank;
 @Entity
 public class Company {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
 	@NotBlank
@@ -25,7 +24,6 @@ public class Company {
 	
 	public Company() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Company(@NotBlank String companyName, @NotBlank String companyLogo, List<Address> addresses) {
@@ -57,7 +55,6 @@ public class Company {
 	public void setCompanyLogo(String companyLogo) {
 		this.companyLogo = companyLogo;
 	}
-
 	@Override
 	public String toString() {
 		return "Company [id=" + id + ", companyName=" + companyName + ", companyLogo=" + companyLogo + "]";

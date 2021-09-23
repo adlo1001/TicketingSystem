@@ -24,7 +24,6 @@ public class TripHistory {
 	@OneToOne(cascade=CascadeType.ALL)
 	private Trip trip;
 	
-	
 	public TripHistory() {
 		super();
 		// TODO Auto-generated constructor stub
