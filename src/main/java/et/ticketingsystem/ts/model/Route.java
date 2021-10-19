@@ -15,25 +15,25 @@ public class Route {
 	@Column(name = "description")
 	private String description;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	private Station initialStation;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	private Station subStation1;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	private Station subStation2;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	private Station subStation3;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	private Station subStation4;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	private Station subStation5;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	private Station finalStation;
 	
 	public Route() {

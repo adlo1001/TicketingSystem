@@ -31,7 +31,7 @@ public class Transportation {
     
 	private String _plateNumber;
 
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne
 	private Company owner;
 
 	@Column(name = "numberOfSeat")
@@ -49,9 +49,6 @@ public class Transportation {
 	private boolean isSmokingAllowed;
 	private boolean isDrinkingAllowed;
 
-	@OneToOne
-	private Trip trip;
-
 	public Transportation() {
 		super();
 	}
@@ -68,15 +65,7 @@ public class Transportation {
 		this.isPetAllowed = isPetAllowed;
 		this.isSmokingAllowed = isSmokingAllowed;
 		this.isDrinkingAllowed = isDrinkingAllowed;
-		this.trip = trip;
-	}
 
-	public Trip getTrip() {
-		return trip;
-	}
-
-	public void setTrip(Trip trip) {
-		this.trip = trip;
 	}
 
 	public int getId() {

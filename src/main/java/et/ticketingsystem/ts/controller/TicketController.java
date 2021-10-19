@@ -1,8 +1,11 @@
 package et.ticketingsystem.ts.controller;
 
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import et.ticketingsystem.ts.model.Ticket;
@@ -25,10 +29,15 @@ public class TicketController {
 
 	@Autowired
 	TicketingService ticketService;
+	String pattern = "yyyy-M-dd hh:mm:ss";
+	//String pattern2 = "EEE MMM d yyyy HH:mm:ss";
+	SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+	//SimpleDateFormat simpleDateFormat2 = new SimpleDateFormat(pattern2);
+	String test ="Wed Oct 27 2021 09:53:00";
 
 	@GetMapping("/tickets")
 	public Iterable<Ticket> readAll() {
-		if (ticketService.count()!=0)
+		if (ticketService.count()!=0)	
 		return ticketService.findAll();
 		else 
 			throw new ErrorMessage("404","Ticket not found! ");
@@ -52,13 +61,10 @@ public class TicketController {
 	@GetMapping("/ticketsByIssueDate")
 	public Iterable<Ticket> readByIssue() {
 		//String pattern = "yyyy-MM-dd";
-		String pattern = "yyyy-MM-DDTHH";
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 
 		String date = simpleDateFormat.format(new Date());
 		Date issueDate = new Date();
 		
-		System.out.println("System Date:"+ issueDate);
 		if (ticketService.count()!=0)
 			
 		   return ticketService.findByExpiryDate(issueDate);
@@ -83,7 +89,25 @@ public class TicketController {
 			throw new ErrorMessage("404",id+" -Ticket not found! ");
 	}
 
+	@GetMapping("/ticketsQuery/")
+	public Iterable<Ticket> InitialAndFinal
+	( @RequestParam Map<String, String> queryString
+			/*@PathVariable String _initial,@PathVariable String _final, @PathVariable String _boarding_time*/) throws ParseException {
+		String _initial=queryString.get("_initial");
+		String _final=queryString.get("_final");
+		String _boarding_time = simpleDateFormat.format(simpleDateFormat.parse(queryString.get("_boarding_time")));
+		//System.out.println("----------------------------------------------->:"+ simpleDateFormat.format(simpleDateFormat2.parse(test)));
+		
+		Iterable<Ticket> _lists= ticketService.findByIntialAndFinal("%"+_initial+"%", "%"+_final+"%", _boarding_time);
+		if(ticketService.count()!=0)
+			return _lists;
+		else 
+			throw new ErrorMessage("404","Ticket not found");
+
+	}
+
 	
+
 	
 	
 	@PostMapping("/tickets")
@@ -97,9 +121,14 @@ public class TicketController {
 
 	}
 
-	@DeleteMapping("/ticket/{id}")
+	@DeleteMapping("/tickets/{id}")
 	public void delete(@PathVariable int id) {
 		ticketService.deleteById(id);
+	}
+
+	@DeleteMapping("/tickets")
+	public void delete() {
+		ticketService.deleteAll();
 	}
 
 }

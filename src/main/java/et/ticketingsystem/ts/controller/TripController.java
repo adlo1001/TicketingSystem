@@ -27,8 +27,9 @@ public class TripController {
 	public Iterable<Trip> read() {
 		return tripService.findAll();
 	}
+    
 
-	
+	 
 	@PostMapping("/trips")
 	public void create(@RequestBody Trip trip) {
 		 tripService.save(trip);
