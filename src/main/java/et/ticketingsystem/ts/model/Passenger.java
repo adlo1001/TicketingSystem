@@ -3,6 +3,8 @@
 import java.util.List;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Passenger {
@@ -26,18 +28,18 @@ public class Passenger {
 
 	}
 
-	@Column(name = "firstName")
+	
 	private String firstName;
 
-	@Column(name = "middleName")
+	@NotBlank
 	private String middleName;
 
-	@Column(name = "lastName")
+	@NotBlank
 	private String lastName;
 
+	@Enumerated(EnumType.STRING)
 	private GENDER _gender;
 
-	@Column(name = "age")
 	private int age;
 
 	private boolean isInfant;
@@ -46,30 +48,37 @@ public class Passenger {
 
 	private boolean isTeen;
 
+	@Enumerated(EnumType.STRING)
 	private PASSENGERCLASS passengerCLASS;
 
-	@Column(name = "disablity_status")
+
 	private String disablity_status;
 
+	@Enumerated(EnumType.STRING)
 	private STATUS status;
 
 	@OneToMany(cascade = CascadeType.ALL)
 	List<Address> addresses;
 
-	@OneToMany(cascade = CascadeType.ALL)
-	List<Identification> _identifications;
- 
+	@OneToOne(cascade = CascadeType.ALL)
+	Identification _identifications;
+
+	
+	@OneToOne
+	private Ticket ticket;
 	
 	public Passenger() {
 		super();
 
 	}
 
-	public Passenger(int id, String firstName, String middleName, String lastName, GENDER _gender, int age,
+
+
+
+	public Passenger(String firstName, @NotBlank String middleName, @NotBlank String lastName, GENDER _gender, int age,
 			boolean isInfant, boolean isChild, boolean isTeen, PASSENGERCLASS passengerCLASS, String disablity_status,
-			STATUS status, List<Address> addresses, List<Identification> identifications) {
+			STATUS status, List<Address> addresses, Identification _identifications, Ticket ticket) {
 		super();
-		this.id = id;
 		this.firstName = firstName;
 		this.middleName = middleName;
 		this.lastName = lastName;
@@ -82,172 +91,172 @@ public class Passenger {
 		this.disablity_status = disablity_status;
 		this.status = status;
 		this.addresses = addresses;
-		this._identifications = identifications;
+		this._identifications = _identifications;
+		this.ticket = ticket;
 	}
+
+
+
 
 	public int getId() {
 		return id;
 	}
 
+
 	public void setId(int id) {
 		this.id = id;
 	}
 
-	public String getfirstName() {
-		return firstName;
-	}
-
-	public void setfirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getmiddleName() {
-		return middleName;
-	}
-
-	public void setmiddleName(String middleName) {
-		this.middleName = middleName;
-	}
-
-	public String getlastName() {
-		return lastName;
-	}
-
-	public void setlastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public GENDER getGender() {
-		return _gender;
-	}
-
-	public void setGender(GENDER gender) {
-		this._gender = gender;
-	}
-
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
-	}
-
-	public String getDisablity_status() {
-		return disablity_status;
-	}
-
-	public void setDisablity_status(String disablity_status) {
-		this.disablity_status = disablity_status;
-	}
-
-	public STATUS isStatus() {
-		return status;
-	}
-
-	public void setStatus(STATUS status) {
-		this.status = status;
-	}
-
-	public List<Address> getAddress() {
-		return addresses;
-	}
 
 	public String getFirstName() {
 		return firstName;
 	}
 
+
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
+
 
 	public String getMiddleName() {
 		return middleName;
 	}
 
+
 	public void setMiddleName(String middleName) {
 		this.middleName = middleName;
 	}
+
 
 	public String getLastName() {
 		return lastName;
 	}
 
+
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 
-	public PASSENGERCLASS getPassengerCLASS() {
-		return passengerCLASS;
-	}
-
-	public void setPassengerCLASS(PASSENGERCLASS passengerCLASS) {
-		this.passengerCLASS = passengerCLASS;
-	}
-
-	public List<Address> getAddresses() {
-		return addresses;
-	}
-
-	public void setAddresses(List<Address> addresses) {
-		this.addresses = addresses;
-	}
-
-	public List<Identification> getIdentifications() {
-		return _identifications;
-	}
-
-	public void setIdentifications(List<Identification> identifications) {
-		this._identifications = identifications;
-	}
-
-	public void setAddress(List<Address> address) {
-		this.addresses = address;
-	}
 
 	public GENDER get_gender() {
 		return _gender;
 	}
 
+
 	public void set_gender(GENDER _gender) {
 		this._gender = _gender;
 	}
+
+
+	public int getAge() {
+		return age;
+	}
+
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
 
 	public boolean isInfant() {
 		return isInfant;
 	}
 
+
 	public void setInfant(boolean isInfant) {
 		this.isInfant = isInfant;
 	}
+
 
 	public boolean isChild() {
 		return isChild;
 	}
 
+
 	public void setChild(boolean isChild) {
 		this.isChild = isChild;
 	}
+
 
 	public boolean isTeen() {
 		return isTeen;
 	}
 
+
 	public void setTeen(boolean isTeen) {
 		this.isTeen = isTeen;
 	}
 
+
+	public PASSENGERCLASS getPassengerCLASS() {
+		return passengerCLASS;
+	}
+
+
+	public void setPassengerCLASS(PASSENGERCLASS passengerCLASS) {
+		this.passengerCLASS = passengerCLASS;
+	}
+
+
+	public String getDisablity_status() {
+		return disablity_status;
+	}
+
+
+	public void setDisablity_status(String disablity_status) {
+		this.disablity_status = disablity_status;
+	}
+
+
 	public STATUS getStatus() {
 		return status;
 	}
+
+
+	public void setStatus(STATUS status) {
+		this.status = status;
+	}
+
+
+	public List<Address> getAddresses() {
+		return addresses;
+	}
+
+
+	public void setAddresses(List<Address> addresses) {
+		this.addresses = addresses;
+	}
+
+
+	public Identification get_identifications() {
+		return _identifications;
+	}
+
+
+	public void set_identifications(Identification _identifications) {
+		this._identifications = _identifications;
+	}
+
+
+	public Ticket getTicket() {
+		return ticket;
+	}
+
+
+	public void setTicket(Ticket ticket) {
+		this.ticket = ticket;
+	}
+
 
 	@Override
 	public String toString() {
 		return "Passenger [id=" + id + ", firstName=" + firstName + ", middleName=" + middleName + ", lastName="
 				+ lastName + ", _gender=" + _gender + ", age=" + age + ", isInfant=" + isInfant + ", isChild=" + isChild
 				+ ", isTeen=" + isTeen + ", passengerCLASS=" + passengerCLASS + ", disablity_status=" + disablity_status
-				+ ", status=" + status + ", addresses=" + addresses + ", identifications=" + "]";
+				+ ", status=" + status + ", addresses=" + addresses + ", _identifications=" + _identifications
+				+ ", ticket=" + ticket + "]";
 	}
+
 
 }
 

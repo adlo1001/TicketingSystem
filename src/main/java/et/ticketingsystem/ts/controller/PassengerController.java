@@ -22,8 +22,10 @@ public class PassengerController {
 	@Autowired
 	PassengerService passengerService;
 
-	@PostMapping("/passengers")
-	public void create(@RequestBody Passenger passenger) {
+    
+	@PostMapping(value="/passengers/",consumes = "application/json")
+	public void set(@RequestBody Passenger passenger) {
+	  
 		passengerService.save(passenger);
 	}
 
@@ -34,6 +36,7 @@ public class PassengerController {
 
 	@GetMapping(value = "/passengers", produces = "application/json")
 	public Iterable<Passenger> getList() {
+	
 		return passengerService.findAll();
 	}
 

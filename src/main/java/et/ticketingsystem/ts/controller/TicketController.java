@@ -11,6 +11,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -30,10 +31,10 @@ public class TicketController {
 	@Autowired
 	TicketingService ticketService;
 	String pattern = "yyyy-M-dd hh:mm:ss";
-	//String pattern2 = "EEE MMM d yyyy HH:mm:ss";
+	String pattern2 = "EEE MMM d yyyy HH:mm:ss";
 	SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-	//SimpleDateFormat simpleDateFormat2 = new SimpleDateFormat(pattern2);
-	String test ="Wed Oct 27 2021 09:53:00";
+	SimpleDateFormat simpleDateFormat2 = new SimpleDateFormat(pattern2);
+	String test ="Wed Oct 19 2021 09:53:00";
 
 	@GetMapping("/tickets")
 	public Iterable<Ticket> readAll() {
@@ -95,9 +96,18 @@ public class TicketController {
 			/*@PathVariable String _initial,@PathVariable String _final, @PathVariable String _boarding_time*/) throws ParseException {
 		String _initial=queryString.get("_initial");
 		String _final=queryString.get("_final");
-		String _boarding_time = simpleDateFormat.format(simpleDateFormat.parse(queryString.get("_boarding_time")));
+		String _boarding_time= queryString.get("_boarding_time");
+		System.out.println("----------------------------------------------->:1  "+_boarding_time);
+		if(_boarding_time.equalsIgnoreCase("undefind"));
+		else if(_boarding_time.endsWith(")"))
+				{_boarding_time=simpleDateFormat.format(simpleDateFormat2.parse(_boarding_time));
+				_boarding_time=_boarding_time.split(" GMT ")[0];
+	
+				}
+		else 
+		_boarding_time = simpleDateFormat.format(simpleDateFormat.parse(queryString.get("_boarding_time")));
 		//System.out.println("----------------------------------------------->:"+ simpleDateFormat.format(simpleDateFormat2.parse(test)));
-		
+		System.out.println("------->"+_boarding_time);
 		Iterable<Ticket> _lists= ticketService.findByIntialAndFinal("%"+_initial+"%", "%"+_final+"%", _boarding_time);
 		if(ticketService.count()!=0)
 			return _lists;
@@ -131,4 +141,8 @@ public class TicketController {
 		ticketService.deleteAll();
 	}
 
+	@PatchMapping("/tickets")
+	public void  modify(@RequestBody Ticket ticket) {
+		ticketService.save(ticket);
+	}
 }
