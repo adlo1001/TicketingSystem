@@ -15,6 +15,8 @@ import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class User {
 
@@ -30,6 +32,7 @@ public class User {
 	@Column(unique=true)
 	private String userId;
 
+	@JsonIgnore
 	@NotBlank
 	private String password;
 

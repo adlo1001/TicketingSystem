@@ -97,7 +97,6 @@ public class TicketController {
 		String _initial=queryString.get("_initial");
 		String _final=queryString.get("_final");
 		String _boarding_time= queryString.get("_boarding_time");
-		System.out.println("----------------------------------------------->:1  "+_boarding_time);
 		if(_boarding_time.equalsIgnoreCase("undefind"));
 		else if(_boarding_time.endsWith(")"))
 				{_boarding_time=simpleDateFormat.format(simpleDateFormat2.parse(_boarding_time));
@@ -106,8 +105,6 @@ public class TicketController {
 				}
 		else 
 		_boarding_time = simpleDateFormat.format(simpleDateFormat.parse(queryString.get("_boarding_time")));
-		//System.out.println("----------------------------------------------->:"+ simpleDateFormat.format(simpleDateFormat2.parse(test)));
-		System.out.println("------->"+_boarding_time);
 		Iterable<Ticket> _lists= ticketService.findByIntialAndFinal("%"+_initial+"%", "%"+_final+"%", _boarding_time);
 		if(ticketService.count()!=0)
 			return _lists;
@@ -115,8 +112,6 @@ public class TicketController {
 			throw new ErrorMessage("404","Ticket not found");
 
 	}
-
-	
 
 	
 	

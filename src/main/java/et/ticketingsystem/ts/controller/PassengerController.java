@@ -1,5 +1,7 @@
 package et.ticketingsystem.ts.controller;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +24,7 @@ public class PassengerController {
 	@Autowired
 	PassengerService passengerService;
 
-    
+	private  Date today = Calendar.getInstance().getTime();
 	@PostMapping(value="/passengers/",consumes = "application/json")
 	public void set(@RequestBody Passenger passenger) {
 	  
@@ -36,7 +38,7 @@ public class PassengerController {
 
 	@GetMapping(value = "/passengers", produces = "application/json")
 	public Iterable<Passenger> getList() {
-	
+
 		return passengerService.findAll();
 	}
 

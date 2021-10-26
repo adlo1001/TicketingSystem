@@ -60,4 +60,12 @@ public class EthiopianDateController {
 		}
 
 	}
+	
+	@GetMapping("/getNowMGC")
+	public long geNowMGC() {
+	     
+		return  System.currentTimeMillis();
+		// System.out.println(ethiopianDate.format(DateTimeFormatter.ISO_DATE));
+
+	}
 }

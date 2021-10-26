@@ -26,7 +26,7 @@ import et.ticketingsystem.ts.util.UserNotFoundExcption;
 import et.ticketingsystem.ts.model.User;
 
 @RestController
-@RequestMapping(consumes="application/json;charset=UTF-8")
+//@RequestMapping(consumes="application/json;charset=UTF-8")
 public class UserController {
 
 	@Autowired
