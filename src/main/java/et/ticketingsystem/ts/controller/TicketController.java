@@ -136,8 +136,8 @@ public class TicketController {
 		ticketService.deleteAll();
 	}
 
-	@PatchMapping("/tickets")
-	public void  modify(@RequestBody Ticket ticket) {
-		ticketService.save(ticket);
+	@PatchMapping("/tickets/{id}")
+	public void  modify(@PathVariable int id) {
+		ticketService.updateTicketStatus(id);
 	}
 }

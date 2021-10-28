@@ -10,8 +10,9 @@ public class TsApplication {
 
 	public static void main(String[] args) {
 		
-		BatchRunner btch = new BatchRunner();
-		btch.run();
+		//BatchRunner btch = new BatchRunner();
+		//btch.run();
+		
 		SpringApplication.run(TsApplication.class, args);
 	
 	}

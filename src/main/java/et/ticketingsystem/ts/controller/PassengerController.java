@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -31,6 +32,7 @@ public class PassengerController {
 		passengerService.save(passenger);
 	}
 
+	
 	@GetMapping(value = "/passengers/{id}", produces = "application/json")
 	public Optional<Passenger> get(@PathVariable int id) {
 		return passengerService.findById(id);
@@ -46,7 +48,13 @@ public class PassengerController {
 	public void update(@RequestBody Passenger passenger) {
 		passengerService.save(passenger);
 	}
+	@PatchMapping(value = "/passengers/{id}", produces = "application/json")
+	public void patch(@PathVariable int id) {
+		passengerService.updatePassengerStatus(id);
+		
+	}
 
+	
 	@DeleteMapping(value = "/passengers/{id}", produces = "application/json")
 	public void delete(@PathVariable int id) {
 		passengerService.deleteById(id);
