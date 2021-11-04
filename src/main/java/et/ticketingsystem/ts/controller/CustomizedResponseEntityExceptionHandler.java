@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import et.ticketingsystem.ts.util.CustomConstraintViolationException;
 import et.ticketingsystem.ts.util.CustomValidationException;
 import et.ticketingsystem.ts.util.ErrorMessage;
 import et.ticketingsystem.ts.util.ExceptionResponse;
@@ -52,5 +53,12 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 		return new ResponseEntity(exceptionResponse, HttpStatus.BAD_REQUEST);// All errors throw with this status code.
 	}
 
+
+	@ExceptionHandler(CustomConstraintViolationException.class)
+	public final ResponseEntity<Object> handleConstriantViolationException(CustomConstraintViolationException ex, WebRequest request) {
+		ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage(),
+				request.getDescription(false));
+		return new ResponseEntity(exceptionResponse, HttpStatus.BAD_REQUEST);// All errors throw with this status code.
+	}
 
 }

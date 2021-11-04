@@ -28,15 +28,12 @@ public class Transportation {
 	}
 
 	private String vehicle;
-    
 	private String _plateNumber;
 
 	@OneToOne
 	private Company owner;
-
-	@Column(name = "numberOfSeat")
+	
 	private int numberOfSeat;
-
 	private int transporationClass;
 
 	@Enumerated(EnumType.STRING)

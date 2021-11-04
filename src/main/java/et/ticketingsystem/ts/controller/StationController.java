@@ -25,8 +25,9 @@ public class StationController {
 	StationService stationService;
 
 	@PostMapping("/stations")
-	public void create(@Valid @RequestBody Station Station) {
-		stationService.save(Station);
+	public void create(@Valid @RequestBody Station station) {
+		System.out.println(station);
+		stationService.save(station);
 
 	}
 
@@ -45,7 +46,7 @@ public class StationController {
 		stationService.save(Station);
 	}
 
-	@DeleteMapping(value = "/delete/{id}", produces = "application/json")
+	@DeleteMapping(value = "/stations/{id}", produces = "application/json")
 	public void delete(@PathVariable int id) {
 		stationService.deleteById(id);
 	}

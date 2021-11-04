@@ -29,18 +29,20 @@ public class Trip {
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<TripPackage> tripPackage;
 
-	@Future
+	@Future(message="Invalid Data Enter Future Date!")
 	private Date initialTime;
-	@Future
+	
+    @Future(message="Invalid Data Enter Future Date!")
 	private Date finalTime;
 	
 	@Digits(fraction = 1, integer = 2)
 	private double tripPeriod;
 
-	@Future
+	@Future(message="Invalid Data Enter Future Date!")
 	private Date refreshmentBegin;
 	
-	@Future
+	
+	@Future(message="Invalid Data Enter Future Date!")
 	private Date refreshmentEnd;
 	
 	@Enumerated(EnumType.STRING)
